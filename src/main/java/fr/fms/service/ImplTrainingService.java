@@ -1,9 +1,8 @@
 package fr.fms.service;
 
-import fr.fms.dao.CategoryRepository;
-import fr.fms.dao.TrainingRepository;
-import fr.fms.entities.Category;
-import fr.fms.entities.Training;
+import fr.fms.dao.*;
+import fr.fms.entities.*;
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -16,11 +15,19 @@ public class ImplTrainingService implements ItraingService
     CategoryRepository categoryRepository;
     @Autowired
     TrainingRepository trainingRepository;
+    @Autowired
+    CustomerRepository customerRepository;
+    @Autowired
+    OrderRepository orderRepository;
+    @Autowired
+    OrderTrainingRepository orderTrainingRepository;
 
-    public List<Training> getAllTrainings()
-    {
-        return trainingRepository.findAll();
-    }
+
+
+    @Autowired
+    private UserRepository userRepository;
+
+    public List<Training> getAllTrainings() { return trainingRepository.findAll(); }
 
     public Training saveTraining (Training training)
     {
@@ -40,4 +47,12 @@ public class ImplTrainingService implements ItraingService
     public List<Category> getAllCategories() { return categoryRepository.findAll(); }
 
     public  List<Training> getByCategoryId(Long id) { return trainingRepository.findByCategoryId(id); }
+
+    public List<User> getAllUsers() { return userRepository.findAll(); }
+
+    public void saveCustomer(Customer customer) {  customerRepository.save(customer); }
+
+    public void saveOrde(Commande commande) {  orderRepository.save(commande); }
+
+    public void saveTrainingOrde(OrderTraining orderTraining) {  orderTrainingRepository.save(orderTraining); }
 }

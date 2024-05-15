@@ -1,7 +1,6 @@
 package fr.fms.service;
 
-import fr.fms.entities.Category;
-import fr.fms.entities.Training;
+import fr.fms.entities.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,4 +17,13 @@ public interface ItraingService
     List<Category> getAllCategories();
 
     List<Training> getByCategoryId(Long id);
+
+    List<User> getAllUsers();
+
+    void saveCustomer(Customer customer);
+
+    void saveOrde(Commande commande);
+
+    void saveTrainingOrde(OrderTraining orderTraining);
+
 }
